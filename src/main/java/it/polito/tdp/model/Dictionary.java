@@ -51,14 +51,21 @@ public class Dictionary {
 		return listaRich;
 	}
 	
-	public String stampaSbagliate(String partenza) {
+	public Object[] stampaContaSbagliate(String partenza) {
+		Object daRestituire[] = new Object[2];
 		String daStampare = "";
+		int cntSbagliate = 0;
 		List<RichWord> parole = this.spellCheckText(this.pulisciStringhe(partenza));
 		for(RichWord r: parole) {
-			if(!r.isCorretta())
+			if(!r.isCorretta()) {
 				daStampare += r.getParola() + "\n";
+				cntSbagliate++;
+			}
+				
 		}
-		return daStampare;
+		daRestituire[0] = daStampare;
+		daRestituire[1] = cntSbagliate;
+		return daRestituire;
 	}
 	
 

@@ -54,7 +54,7 @@
             </TextArea>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                <children>
-                  <Label fx:id="txtErrors" />
+                  <Label fx:id="txtErrors" textFill="RED" />
                   <Button mnemonicParsing="false" onAction="#doClearText" text="Clear text" />
                </children>
                <padding>

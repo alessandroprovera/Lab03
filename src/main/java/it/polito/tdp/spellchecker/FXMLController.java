@@ -1,6 +1,7 @@
 package it.polito.tdp.spellchecker;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.model.Dictionary;
@@ -37,13 +38,19 @@ public class FXMLController {
 
     @FXML
     void doClearText(ActionEvent event) {
+    	this.txtAreaInput.clear();
+    	this.txtAreaResult.clear();
 
     }
 
     @FXML
     void doSpellCheck(ActionEvent event) {
+    	long inizio = System.nanoTime();
     	this.model.loadDictionary(comboLanguage.getValue());
-    	this.txtAreaResult.setText(this.model.stampaSbagliate(txtAreaInput.getText()));
+    	Object array[] = this.model.stampaContaSbagliate(txtAreaInput.getText());
+    	this.txtAreaResult.setText((String)array[0]);
+    	this.txtErrors.setText("This text contains "+(int)array[1]+" errors");
+    	this.txtTime.setText("Tempo trascorso: "+(System.nanoTime()-inizio)/1000000000.0+" seconds");
 
     }
 
